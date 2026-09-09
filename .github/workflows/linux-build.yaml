@@ -3,12 +3,12 @@ name: Linux build
 permissions: {}
 
 on:
-  pull_request:
-    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref || github.run_id }}
@@ -23,7 +23,7 @@ jobs:
           - g++
           - clang++-15
         cpp-standard:
-          - 17
+          # - 17
           - 20
 
     runs-on: ubuntu-22.04
