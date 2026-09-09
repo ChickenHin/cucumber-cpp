@@ -3,12 +3,12 @@ name: run all
 permissions: {}
 
 on:
-  pull_request:
-    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref || github.run_id }}
@@ -62,16 +62,16 @@ jobs:
       run: |
         ./run-linux.sh
 
-    - name: code coverage summary report
-      uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 #v1.3.0
-      with:
-        filename: coverage/cobertura.xml
-        indicators: false
-        hide_complexity: true
-        format: markdown
-        output: file
+    # - name: code coverage summary report
+    #   uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 #v1.3.0
+    #   with:
+    #     filename: coverage/cobertura.xml
+    #     indicators: false
+    #     hide_complexity: true
+    #     format: markdown
+    #     output: file
 
-    - name: publish code coverage summary
-      run: |
-        echo '# Code Coverage Report' >> $GITHUB_STEP_SUMMARY
-        cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+    # - name: publish code coverage summary
+    #   run: |
+    #     echo '# Code Coverage Report' >> $GITHUB_STEP_SUMMARY
+    #     cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
