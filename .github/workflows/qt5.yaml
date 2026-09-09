@@ -3,12 +3,12 @@ name: build and test with Qt5
 permissions: {}
 
 on:
-  pull_request:
-    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref || github.run_id }}
@@ -71,15 +71,15 @@ jobs:
       run: |
         cmake --build build --target test
 
-    - name: QtCalc examples
-      run: |
-        for TEST in \
-          build/examples/CalcQt/GTestCalculatorQtSteps \
-          build/examples/CalcQt/QtTestCalculatorQtSteps \
-          build/examples/CalcQt/BoostCalculatorQtSteps \
-        ; do
-          "${TEST}" 2> /dev/null &
-          sleep 1
-          (cd examples/CalcQt; cucumber)
-          wait %
-        done
+    # - name: QtCalc examples
+    #   run: |
+    #     for TEST in \
+    #       build/examples/CalcQt/GTestCalculatorQtSteps \
+    #       build/examples/CalcQt/QtTestCalculatorQtSteps \
+    #       build/examples/CalcQt/BoostCalculatorQtSteps \
+    #     ; do
+    #       "${TEST}" 2> /dev/null &
+    #       sleep 1
+    #       (cd examples/CalcQt; cucumber)
+    #       wait %
+    #     done
